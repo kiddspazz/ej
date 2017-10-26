@@ -47,33 +47,33 @@ var ancestry = JSON.parse(ANCESTRY_FILE);
 function compile(array) {
 	var averageByCentury = {};
 	for (var i = 0; i < byCentury.length; i++) {
-		if (!(array[i].century in averageByCentury)) {
-        	averageByCentury[array[i].century] = (
-            (
-              //total of ages in century
-              array.map(function(each) {
-              	if (each.century === array[i].century) {
-              	    return each.age;
-                  } else {
-              		return 0;
-                  }
-              }).reduce(function(a, b) {
-                  return a + b;
-              })
-            )/(
-              //total people in century
-              array.reduce(function(count, each) {
-                  if (each.century === array[i].century) {
-                      return (count + 1);
-                  } else {
-                      return count;
-                  }
-              }, 0)
-            )
-          )
-        }
+
+    var cent = array[i].century;
+    
+		if (!(cent in averageByCentury)) {
+    	averageByCentury[cent] = (
+        //total of ages in century
+        array.map(function(each) {
+        	if (each.century === cent) {
+      	    return each.age;
+          } else {
+      		return 0;
+          }
+        }).reduce(function(a, b) {
+          return a + b;
+        })
+      )/(
+        //total people in century
+        array.reduce(function(count, each) {
+          if (each.century === cent) {
+            return (count + 1);
+          } else {
+            return count;
+          }
+      }, 0))
     }
-	return averageByCentury;
+  }
+  return averageByCentury;
 }
 
 compile(
