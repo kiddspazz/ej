@@ -1,0 +1,23 @@
+<script>
+
+function every(array, test) {
+  var answer = true
+  for (i = 0; i < array.length; i++) {
+    if (test(array[i]) === true) {
+      answer = true
+    } else return false;
+  };
+  return answer;
+};
+
+function some(array, test) {
+  var answer = false
+  for (i = 0; i < array.length; i++) {
+    if (test(array[i]) === false) {
+      answer = false
+    } else return true;
+  };
+  return answer;
+};
+
+</script>
